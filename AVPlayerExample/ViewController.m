@@ -207,6 +207,7 @@ NSString *const kStatusKey   = @"status";
         [self logMessage:[NSString stringWithFormat:@"Couldn't activate AVAudioSession. %@", error]];
     }
 
+    [[TVIAudioController sharedController] setAudioOutput:TVIAudioOutputVideoChatSpeaker];
     [[TVIAudioController sharedController] startAudio];
 }
 
@@ -246,6 +247,7 @@ NSString *const kStatusKey   = @"status";
 }
 
 - (void)stopVideoPlayer {
+    return;
     [self.videoPlayer pause];
     [self.videoPlayer removeObserver:self forKeyPath:kStatusKey];
     self.videoPlayer = nil;
@@ -350,7 +352,8 @@ NSString *const kStatusKey   = @"status";
 
 - (void)didConnectToRoom:(TVIRoom *)room {
     // At the moment, this example only supports rendering one Participant at a time.
-
+    [self startVideoPlayer];
+    
     [self logMessage:[NSString stringWithFormat:@"Connected to room %@ as %@", room.name, room.localParticipant.identity]];
 
     if (room.participants.count > 0) {
@@ -359,7 +362,7 @@ NSString *const kStatusKey   = @"status";
         [self showInterfaceState:ViewControllerStateRoom];
     } else {
         // If there are no Participants, we will play the pre-roll content instead.
-        [self startVideoPlayer];
+        //[self startVideoPlayer];
         [self showInterfaceState:ViewControllerStateMediaPlayer];
     }
 }
