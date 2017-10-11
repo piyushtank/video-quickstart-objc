@@ -158,6 +158,8 @@
             [self logMessage:@"Failed to add audio track"];
         }
     }
+    
+    [TVIAudioController sharedController].audioOutput = TVIAudioOutputVoiceChatDefault;
 
     // Create a video track which captures from the camera.
     if (!self.localVideoTrack) {
@@ -343,6 +345,8 @@
 
 - (void)participant:(TVIParticipant *)participant addedAudioTrack:(TVIAudioTrack *)audioTrack {
     [self logMessage:[NSString stringWithFormat:@"Participant %@ added audio track.", participant.identity]];
+    
+    NSLog(@"didConnectToRoom - audioOutput v%lu", (unsigned long)[TVIAudioController sharedController].audioOutput);
 }
 
 - (void)participant:(TVIParticipant *)participant removedAudioTrack:(TVIAudioTrack *)audioTrack {
