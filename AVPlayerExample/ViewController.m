@@ -199,9 +199,17 @@ NSString *const kStatusKey   = @"status";
     // In this example we don't want TwilioVideo to dynamically configure and activate / deactivate the AVAudioSession.
     // Instead we will setup audio once, and deal with activation and de-activation manually.
     [[TVIAudioController sharedController] configureAudioSession:TVIAudioOutputVideoChatDefault];
+    
+    NSError *error;
+    BOOL success =  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+                                                     withOptions:AVAudioSessionCategoryOptionMixWithOthers
+                                                           error:&error];
+    if (!success) {
+        NSLog(@"Failed to set category obptions, error = %@", error);
+    }
 
     // This is similar to when CallKit is used, but instead we will activate AVAudioSession ourselves.
-    NSError *error = nil;
+    error = nil;
     [[AVAudioSession sharedInstance] setActive:YES error:&error];
     if (error) {
         [self logMessage:[NSString stringWithFormat:@"Couldn't activate AVAudioSession. %@", error]];
