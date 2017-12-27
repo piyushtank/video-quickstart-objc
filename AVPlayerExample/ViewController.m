@@ -134,17 +134,12 @@ NSString *const kStatusKey   = @"status";
 }
 
 - (IBAction)micButtonPressed:(id)sender {
-    // We will toggle the mic to mute/unmute and change the title according to the user action.
-
-    if (self.localAudioTrack) {
-        self.localAudioTrack.enabled = !self.localAudioTrack.isEnabled;
-
-        // Toggle the button title
-        if (self.localAudioTrack.isEnabled) {
-            [self.micButton setTitle:@"Mute" forState:UIControlStateNormal];
-        } else {
-            [self.micButton setTitle:@"Unmute" forState:UIControlStateNormal];
-        }
+    if (self.videoPlayer) {
+        [self stopVideoPlayer];
+        [self setupAudioSession];
+    } else {
+        [self resetAudioSession];
+        [self startVideoPlayer];
     }
 }
 
