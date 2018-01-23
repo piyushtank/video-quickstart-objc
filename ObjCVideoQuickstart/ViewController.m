@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "ExampleCoreAudioDevice.h"
 #import "Utils.h"
 
 #import <TwilioVideo/TwilioVideo.h>
@@ -55,7 +56,10 @@
     
     // Using a token server to provide access tokens? Make sure the tokenURL is pointing to the correct location.
     self.tokenUrl = @"http://127.0.0.1:5000/";
-    
+
+    // Setup the AudioDevice first, before using TwilioVideo to create Tracks or connect to a Room.
+    TwilioVideo.audioDevice = [[ExampleCoreAudioDevice alloc] init];
+
     // Preview our local camera track in the local video preview view.
     [self startPreview];
 
