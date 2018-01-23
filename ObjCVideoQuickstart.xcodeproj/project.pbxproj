@@ -22,6 +22,7 @@
 		283214CF1CD3BE0D00F1AD80 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283214CE1CD3BE0D00F1AD80 /* AudioToolbox.framework */; };
 		4BF377BC1D99C8F200AC0BA3 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF377BB1D99C8F200AC0BA3 /* Utils.m */; };
 		4BF377C11D99F0D700AC0BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BF377BF1D99F0D700AC0BA3 /* Main.storyboard */; };
+		8A7DEDB42017A87D00E7EB16 /* ExampleCoreAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7DEDB32017A87D00E7EB16 /* ExampleCoreAudioDevice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,8 @@
 		4BF377BA1D99C8F200AC0BA3 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		4BF377BB1D99C8F200AC0BA3 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		4BF377C01D99F0D700AC0BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8A7DEDB22017A87D00E7EB16 /* ExampleCoreAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleCoreAudioDevice.h; sourceTree = "<group>"; };
+		8A7DEDB32017A87D00E7EB16 /* ExampleCoreAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleCoreAudioDevice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 		283214911CD1307900F1AD80 /* ObjCVideoQuickstart */ = {
 			isa = PBXGroup;
 			children = (
+				8A7DEDB22017A87D00E7EB16 /* ExampleCoreAudioDevice.h */,
+				8A7DEDB32017A87D00E7EB16 /* ExampleCoreAudioDevice.m */,
 				283214A91CD1312F00F1AD80 /* ViewController.h */,
 				283214AA1CD1312F00F1AD80 /* ViewController.m */,
 				4BF377BA1D99C8F200AC0BA3 /* Utils.h */,
@@ -202,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				283214AB1CD1312F00F1AD80 /* ViewController.m in Sources */,
+				8A7DEDB42017A87D00E7EB16 /* ExampleCoreAudioDevice.m in Sources */,
 				283214971CD1307900F1AD80 /* AppDelegate.m in Sources */,
 				283214941CD1307900F1AD80 /* main.m in Sources */,
 				4BF377BC1D99C8F200AC0BA3 /* Utils.m in Sources */,
