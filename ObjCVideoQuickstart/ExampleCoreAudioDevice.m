@@ -35,11 +35,19 @@ static int kInputBus = 1;
 #pragma mark - TVIAudioDeviceRenderer.
 
 - (nullable TVIAudioFormat *)renderFormat {
-    // TODO: Use the real value from AVAudioSession here!
     if (!_renderingFormat) {
+
+        /*
+         * For now, we will assume that the AVAudioSession has already been configured and started and that the values
+         * for sampleRate and IOBufferDuration are final.
+         */
+        const NSTimeInterval sessionBufferDuration = [AVAudioSession sharedInstance].IOBufferDuration;
+        const double sessionSampleRate = [AVAudioSession sharedInstance].sampleRate;
+        const size_t sessionFramesPerBuffer = (size_t)(sessionSampleRate * sessionBufferDuration + .5);
+
         _renderingFormat = [[TVIAudioFormat alloc] initWithChannels:TVIAudioChannelsStereo
-                                                         sampleRate:TVIAudioSampleRate48000
-                                                    framesPerBuffer:512];
+                                                         sampleRate:sessionSampleRate
+                                                    framesPerBuffer:sessionFramesPerBuffer];
     }
 
     return _renderingFormat;
@@ -62,7 +70,8 @@ static int kInputBus = 1;
 }
 
 - (BOOL)stopRendering {
-    // TODO: Stop and destroy core audio graph here.
+    [self teardownAudioUnit];
+    self.renderingContext = nil;
     return YES;
 }
 
