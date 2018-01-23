@@ -26,6 +26,8 @@ static int kInputBus = 1;
 - (id)init {
     self = [super init];
     if (self) {
+        // Setup the AVAudioSession early to workaround lack of dynamic format change support in 2.0.0-preview10 RCs.
+        [self setupAVAudioSession];
     }
     return self;
 }
@@ -37,15 +39,17 @@ static int kInputBus = 1;
     if (!_renderingFormat) {
         _renderingFormat = [[TVIAudioFormat alloc] initWithChannels:TVIAudioChannelsStereo
                                                          sampleRate:TVIAudioSampleRate48000
-                                                    framesPerBuffer:TVIAudioSampleRate48000 / 100];
+                                                    framesPerBuffer:512];
     }
 
     return _renderingFormat;
 }
 
 - (BOOL)initializeRenderer {
-    [self setupAVAudioSession];
-
+    /*
+     * In this example we don't need any fixed size buffers or other pre-allocated resources. We will simply write
+     * directly to the AudioBufferList provided in the AudioUnit's rendering callback.
+     */
     return YES;
 }
 
@@ -89,8 +93,7 @@ static OSStatus playout_cb(void *refCon,
                            const AudioTimeStamp *timestamp,
                            UInt32 busNumber,
                            UInt32 numFrames,
-                           AudioBufferList *bufferList)
-{
+                           AudioBufferList *bufferList) {
     TVIAudioDeviceContext *context = (TVIAudioDeviceContext *)refCon;
 
     assert(bufferList->mBuffers[0].mNumberChannels == 2);
@@ -168,7 +171,6 @@ static OSStatus playout_cb(void *refCon,
         return NO;
     }
 
-    // TODO: Should this be on the output scope?
     status = AudioUnitSetProperty(_audioUnit, kAudioUnitProperty_StreamFormat,
                                   kAudioUnitScope_Input, kOutputBus,
                                   &streamDescription, sizeof(streamDescription));
