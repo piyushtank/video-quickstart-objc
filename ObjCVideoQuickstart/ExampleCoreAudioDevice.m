@@ -200,10 +200,16 @@ static OSStatus playout_cb(void *refCon,
         return NO;
     }
 
-    // Finally, initialize the RemoteIO audio unit.
+    // Finally, initialize and start the RemoteIO audio unit.
     status = AudioUnitInitialize(_audioUnit);
     if (status != 0) {
         NSLog(@"Could not initialize the audio unit!");
+        return NO;
+    }
+
+    status = AudioOutputUnitStart(_audioUnit);
+    if (status != 0) {
+        NSLog(@"Could not start the audio unit!");
         return NO;
     }
 
