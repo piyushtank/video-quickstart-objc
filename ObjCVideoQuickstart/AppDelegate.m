@@ -1,7 +1,9 @@
 //
 //  AppDelegate.m
-//  Twilio Video Conversations Quickstart - Objective C
-
+//  ObjCVideoQuickstart
+//
+//  Copyright © 2016-2018 Twilio, Inc. All rights reserved.
+//
 
 #import "AppDelegate.h"
 

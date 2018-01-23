@@ -2,7 +2,7 @@
 //  AVPlayerView.m
 //  AVPlayerExample
 //
-//  Copyright © 2016-2017 Twilio, Inc. All rights reserved.
+//  Copyright © 2016-2018 Twilio, Inc. All rights reserved.
 //
 
 #import "AVPlayerView.h"

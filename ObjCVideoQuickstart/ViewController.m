@@ -2,7 +2,7 @@
 //  ViewController.m
 //  ObjCVideoQuickstart
 //
-//  Copyright © 2016-2017 Twilio, Inc. All rights reserved.
+//  Copyright © 2016-2018 Twilio, Inc. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -54,7 +54,7 @@
     self.accessToken = @"TWILIO_ACCESS_TOKEN";
     
     // Using a token server to provide access tokens? Make sure the tokenURL is pointing to the correct location.
-    self.tokenUrl = @"http://localhost:8000/token.php";
+    self.tokenUrl = @"http://127.0.0.1:5000/";
     
     // Preview our local camera track in the local video preview view.
     [self startPreview];
